@@ -1,0 +1,33 @@
+CREATE TABLE BankDetails (
+    BankId INT PRIMARY KEY IDENTITY(1,1),
+    BankName NVARCHAR(100),
+    Address NVARCHAR(255),
+    MainBranch NVARCHAR(100),
+    DatePicker DATE
+);
+
+CREATE TABLE BranchDetails (
+    BranchId INT PRIMARY KEY IDENTITY(1,1),
+    BankId INT,
+    BranchName NVARCHAR(100),
+    BranchCode NVARCHAR(20),
+    IFSCCode NVARCHAR(20),
+    FOREIGN KEY (BankId) REFERENCES BankDetails(BankId)
+);
+
+
+
+INSERT INTO BankDetails (BankName, Address, MainBranch, DatePicker)
+VALUES ('Sample Bank4', '123 Sample St4', 'Sample Main Branch4', GETDATE());
+
+
+-- Insert sample data into BranchDetails table
+INSERT INTO BranchDetails (BankId, BranchName, BranchCode, IFSCCode)
+VALUES (1, 'Sample Branch 1', 'BR1', 'IFSC001'),
+       (2, 'Sample Branch 2', 'BR2', 'IFSC002'),
+       (3, 'Sample Branch 3', 'BR3', 'IFSC003'),
+	   (4, 'Sample Branch 2', 'BR4', 'IFSC004'),
+	   (5, 'Sample Branch 2', 'BR5', 'IFSC005');
+
+	   select * from BankDetails;
+	   select * from BranchDetails;
